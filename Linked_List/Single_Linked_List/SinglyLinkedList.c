@@ -157,6 +157,21 @@ void display(){
         temp = temp->next;
     }
 }
+void displayForNerds(){
+    struct node *temp;
+    temp = head; //copy the head for traversal.
+    printf("head points at : %u\n\n",head);
+    
+    if(head == NULL){
+        printf("IT\'S EMPTY");
+        return;
+    }
+    while(temp != NULL){
+        printf("temp points at: %u  | ",temp);
+        printf("\t[temp->info : %d  | temp->next : %u]\n",temp->info,temp->next); 
+        temp = temp->next;
+    }
+}
 
 void menu(){
     int i=1;
@@ -170,6 +185,7 @@ void menu(){
     printf("%d. To delete at end\n",i++);
     printf("%d. To delete a particular node by value\n",i++);
     printf("%d. Reverse entire Linked list\n",i++);
+     printf("%d. Display nodes with full details (for nerds)\n",i++);
     printf("-1. TO EXIT");
 }
 int main(){
@@ -219,6 +235,8 @@ int main(){
                     break;
             case 9: temp = reverse();
                     printf("%s",(temp>0)?"Reversed Successfully":(temp==-1)?"It's Empty":"Search Value Not Found");
+                    break;
+            case 10 : displayForNerds();
                     break;
             default:    printf("\nERROR: WRONG OPTION\n");
                         break;
