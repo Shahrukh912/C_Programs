@@ -25,7 +25,7 @@ int peek(){
     if(top == -1){
         return ERROR;
     }
-    return stack[top]; //return the last val
+    return stack[top]; //return the last value
 }
 
 void display(){

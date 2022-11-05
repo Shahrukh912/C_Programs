@@ -159,7 +159,7 @@ void display(){
 }
 void displayForNerds(){
     struct node *temp;
-    temp = head; //copy the head for traversal.
+    temp = head; //copy the head for traversal..
     printf("head points at : %u\n\n",head);
     
     if(head == NULL){
