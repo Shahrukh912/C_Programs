@@ -52,7 +52,7 @@ int main(){
         scanf("%d",&choice);
 
         switch (choice){
-            case -1:break; //just so that we not to see that Wrong option error. because after switch it will go to the while condition and then stop.
+            case -1:break; //just so that we would not to see that Wrong option error. because after switch it will go to the while condition and then stop.
             case 0: menu();
                     break;
             case 1: printf("Enter Value : ");
