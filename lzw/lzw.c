@@ -85,7 +85,7 @@ int main(){
     printf("Enter output file name (press enter to use out.txt): ");
     fgets(out,100,stdin);
 
-    displayDict();
+    //displayDict();
     if(strcmp(out,"")){
         strcpy(out,"out.txt");
     }
