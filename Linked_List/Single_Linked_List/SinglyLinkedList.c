@@ -8,7 +8,7 @@ struct node *head = NULL;
 
 //To get a new Node using malloc
 struct node * getNewNode(){
-    return ((struct node*) malloc(SIZEof(struct node)) );
+    return ((struct node*) malloc(sizeof(struct node)) );
 }
 void insertAtStart(int x){
     struct node *newNode;
