@@ -4,13 +4,14 @@ LZ77 Encoding and Decoding:
 */
 
 #include<stdio.h>
+#include<stdlib.h>
 #include<string.h>
 
 //Global variables
 int lindex=-1; //it keeps track of where was the last character inserted in look ahead buffer to see its full..
 FILE *fout;
 
-int wsize,la,sb; //wsize is window size, and la is lookahead, sb is a search buffer
+int wSIZE,la,sb; //wSIZE is window SIZE, and la is lookahead, sb is a search buffer
 char *l,*s;//array for look ahead and search buffer.
 
 void display(){
@@ -76,7 +77,7 @@ void dumpLeft(int len,int dumpInFile){
         for(i=1;i<sb;i++){
             l[i-1] = l[i];
         }
-        if(dumpInFile == 1){
+        if(dumpInFile == 1 && c!=NULL){
             fputc(c,fout);
         }
         len--;
@@ -99,9 +100,30 @@ void lz77Encode(){
     printf("<%d,%d,c(%c)>\n",offset,len,l[len]);
     dumpLeft(len+1,0);
 }
+void lz77Decode(int of,int len, char t){
+    int a=len,i=sb-1-of;
+    lindex = -1;//empty the look ahead
+    printf("\n%d,%d,\n",a,i);
+    insertInBuffer(t);
+    display();
+    printf("\t|| ");
+    while(a > 0){
+        if(i<sb){
+            insertInBuffer(s[i]);
+        }
+        else{
+            insertInBuffer(l[i-sb]);
+        }
+        i++;
+        a--;
+    }
+    dumpLeft(len+1,1);
+    display();
+    printf("\n");
+}
 int main(){
-    char st[100],charSet[26],in[100],out[100],w[20],t;
-    int m,i=0,temp;
+    char st[100],charSet[26],line[100],in[100],out[100],w[20],t;
+    int m,i=0,temp,of,len,j;
 
 
     //Inputs
@@ -115,15 +137,15 @@ int main(){
     if(strcmp(out,"")){
         strcpy(out,"out.txt");
     }
-    printf("Enter buffer size : ");
+    printf("Enter buffer SIZE : ");
     scanf("%d",&la);
     printf("Enter Look search buffer : ");
     scanf("%d",&sb);
-    wsize = sb+la; //calculating search buffer.
-    printf("window size is %d\n",wsize);
+    wSIZE = sb+la; //calculating search buffer.
+    printf("window SIZE is %d\n",wSIZE);
 
-    l = (char *)calloc(la,sizeof(char)); //creating the array,
-    s = (char *)calloc(sb,sizeof(char)); //creating the array.
+    l = (char *)calloc(la,SIZEof(char)); //creating the array,
+    s = (char *)calloc(sb,SIZEof(char)); //creating the array.
 
 
     
@@ -147,10 +169,35 @@ int main(){
             }    
                  
         }
-        
+        while(lindex >=0 ){
+            lz77Encode();
+        }
     }
     fclose(fin);
     fclose(fout);
     
+    fin = fopen(out,"r");
+    fout = fopen("decode.txt","w");
+
+     while(fgets(line,SIZEof(line),fin)){
+        
+        for(i=1;line[i]!=',';i++){
+            w[i-1] = line[i];
+        }
+        w[i-1] = '\0';
+        of = atoi(w);
+        i++;
+        for(j=0;line[i]!=',';i++,j++){
+            w[j] = line[i];
+        }
+        len = atoi(w);
+        i+=3;
+        t = line[i];
+
+        l = (char *)calloc(la,SIZEof(char)); //creating the array,
+        s = (char *)calloc(sb,SIZEof(char)); //creating the array.
+        lz77Decode(of,len,t);
+             
+    }
 
 }

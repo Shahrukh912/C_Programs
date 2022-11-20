@@ -2,13 +2,13 @@
 #define ERROR -999999
 
 //Global variables.
-int size = 5;
+int SIZE = 5;
 int front = -1,rear = -1;
-int Queue[5]; //make this same as the size variable.
+int Queue[5]; //make this same as the SIZE variable.
 
 int enqueue(int x){ //return defination 0 means success and ERROR means error.
     //checking for overflow
-    if(rear == size - 1){
+    if(rear == SIZE - 1){
         return ERROR; 
     }
     //Inserting
@@ -74,7 +74,7 @@ void displayForNerds(){
     printf("front : %d  | rear : %d  (^ is for front pointer, * is for rear pointer)\n",front,rear);
     if(front == -1){
         printf("Its Empty\n");
-        fcount = rcount = (size+1)*4;
+        fcount = rcount = (SIZE+1)*4;
     }
 
     
@@ -87,7 +87,7 @@ void displayForNerds(){
         if(i != rear)
             rcount += (countDigits(Queue[i])+2);
     }
-    for(;i<=size;i++){
+    for(;i<=SIZE;i++){
         printf("__  ");
     }
 
