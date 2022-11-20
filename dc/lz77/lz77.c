@@ -11,7 +11,7 @@ LZ77 Encoding and Decoding:
 int lindex=-1; //it keeps track of where was the last character inserted in look ahead buffer to see its full..
 FILE *fout;
 
-int wSIZE,la,sb; //wSIZE is window SIZE, and la is lookahead, sb is a search buffer
+int wsize,la,sb; //wsize is window size, and la is lookahead, sb is a search buffer
 char *l,*s;//array for look ahead and search buffer.
 
 void display(){
@@ -137,15 +137,15 @@ int main(){
     if(strcmp(out,"")){
         strcpy(out,"out.txt");
     }
-    printf("Enter buffer SIZE : ");
+    printf("Enter buffer size : ");
     scanf("%d",&la);
     printf("Enter Look search buffer : ");
     scanf("%d",&sb);
-    wSIZE = sb+la; //calculating search buffer.
-    printf("window SIZE is %d\n",wSIZE);
+    wsize = sb+la; //calculating search buffer.
+    printf("window size is %d\n",wsize);
 
-    l = (char *)calloc(la,SIZEof(char)); //creating the array,
-    s = (char *)calloc(sb,SIZEof(char)); //creating the array.
+    l = (char *)calloc(la,sizeof(char)); //creating the array,
+    s = (char *)calloc(sb,sizeof(char)); //creating the array.
 
 
     
@@ -179,7 +179,7 @@ int main(){
     fin = fopen(out,"r");
     fout = fopen("decode.txt","w");
 
-     while(fgets(line,SIZEof(line),fin)){
+     while(fgets(line,sizeof(line),fin)){
         
         for(i=1;line[i]!=',';i++){
             w[i-1] = line[i];
@@ -194,8 +194,8 @@ int main(){
         i+=3;
         t = line[i];
 
-        l = (char *)calloc(la,SIZEof(char)); //creating the array,
-        s = (char *)calloc(sb,SIZEof(char)); //creating the array.
+        l = (char *)calloc(la,sizeof(char)); //creating the array,
+        s = (char *)calloc(sb,sizeof(char)); //creating the array.
         lz77Decode(of,len,t);
              
     }

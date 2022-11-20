@@ -2,12 +2,12 @@
 #define ERROR -999999
 
 //Global variables.
-int SIZE = 5;
+int size = 5;
 int top = -1;
-int stack[5]; //make this same as the SIZE variable.
+int stack[5]; //make this same as the size variable.
 
 int push(int x){ //return defination 0 means success and ERROR means error.
-    if(top == SIZE - 1){
+    if(top == size - 1){
         return ERROR; 
     }
     top++;
