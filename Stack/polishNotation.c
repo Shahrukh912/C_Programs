@@ -105,7 +105,6 @@ void postfix(){
             continue;
         }
         else if( isalnum(ex[i]) !=0){ //isalnum return non zero if the char is number or englishAlphabet character
-            //printf("Fuck\n");
             res[k] = ex[i];
             k++;
         }
